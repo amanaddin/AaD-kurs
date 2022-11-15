@@ -3,25 +3,23 @@ package se.hig.aod.lab0;
 public class LinkedList<T> implements List<T>{
 	
 	private ListNode<T> head;
+	private ListNode<T> tail;
 	private ListNode<T> current;
-	private int numberOfElements = 0;
+	private int numberOfElements;
 	private boolean chekifEmpty;
 	
 	public LinkedList() {
 		this.head = null;
 	}
 	public boolean isEmpty() {
-		if (head == null) {
-			return true;
-		}
-		else
-			return false;
+		return head == null;
 	}
 	public T getFirst(){
-		return getFirst();
+		return head.data;
 	}
 	public void clear() {
-		chekifEmpty = true;
+		head = null;
+		numberOfElements = 0;
 	}
 	@Override
 	public int numberOfElements() {
@@ -34,22 +32,45 @@ public class LinkedList<T> implements List<T>{
 	}
 	@Override
 	public void insertFirst(T t) {
-		// TODO Auto-generated method stub
-		
+		if(head == null) {
+			ListNode<T> newNode = new ListNode<T>(t, null);
+			head = newNode;
+			tail = newNode;
+		}
+		else {
+			ListNode<T> newNode = new ListNode<T>(t, head);
+			head = newNode;
+		}
 	}
 	@Override
 	public void insertLast(T t) {
-		// TODO Auto-generated method stub
-		
+		if(isEmpty()){
+			ListNode<T> newNode = new ListNode<T>(t, null);
+			head = newNode;
+		}
+		else {
+			ListNode<T> newNode = new ListNode<T>(t, null);
+			tail.next = newNode;
+			tail = newNode;	
+		}
 	}
 	@Override
 	public T removeFirst() {
-		// TODO Auto-generated method stub
-		return null;
+		if(!isEmpty()) {
+			ListNode<T> newNode = new ListNode<T>
+			(head.next.data, head.next.next);
+			head = null;
+			head = newNode;
+			return head.data;
+		}
+		else
+			throw new ListEmptyException("unable to remove first elemen. list is empty");
 	}
 	@Override
 	public T removeLast() {
-		// TODO Auto-generated method stub
+		if(!isEmpty()) {
+			
+		}
 		return null;
 	}
 	@Override
