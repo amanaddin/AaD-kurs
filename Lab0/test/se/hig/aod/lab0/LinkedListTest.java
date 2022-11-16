@@ -85,18 +85,12 @@ class LinkedListTest {
 		assertEquals(1, listUnderTest.getFirst() , "GetFirst() should return first element in list");
 	}
 	
-	/*
-	 * Skriv fler test-metoder själv........................
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 */
-	
+	@Test
+	public void testNumberOfElements() {
+		initializeList();
+		assertEquals(fixture.length, listUnderTest.numberOfElements());
+	}
 
-	
 	private void initializeList() {
 		for (int i = 0; i < fixture.length; i++) {
 			listUnderTest.insertLast(fixture[i]);
