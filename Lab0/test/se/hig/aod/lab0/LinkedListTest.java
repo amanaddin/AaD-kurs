@@ -84,7 +84,9 @@ class LinkedListTest {
 		initializeList();
 		assertEquals(1, listUnderTest.getFirst() , "GetFirst() should return first element in list");
 	}
-	
+	/**
+	 * Test method for {@link se.hig.aod.lab0.numberOfElements(}.
+	 */
 	@Test
 	public void testNumberOfElements() {
 		initializeList();
