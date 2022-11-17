@@ -1,6 +1,6 @@
 package se.hig.aod.lab0;
 
-
+//qu
 /**
  * An interface for the generic Abstract Data Type <code>Queue</code>.
  * 

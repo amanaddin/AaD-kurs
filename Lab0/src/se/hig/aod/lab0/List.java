@@ -82,5 +82,4 @@ public interface List<T>
 	 */
 	public T getLast();
 	
-
 }

@@ -1,5 +1,5 @@
 package se.hig.aod.lab0;
-
+//ex
 /**
  * Exception class that signals if an operation that is not allowed has been
  * done on an empty list.

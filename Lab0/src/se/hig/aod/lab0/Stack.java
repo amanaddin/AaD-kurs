@@ -1,6 +1,6 @@
 package se.hig.aod.lab0;
 
-
+//stat
 /**
  * A Java Interface for the generic Abstract Data Type<code>Stack</code>.
  * 

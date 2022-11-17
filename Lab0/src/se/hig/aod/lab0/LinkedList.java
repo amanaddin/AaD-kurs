@@ -1,11 +1,12 @@
 package se.hig.aod.lab0;
 
-public class LinkedList<T> implements List<T> {
+public class LinkedList<T> implements PrintableList<T> {
 
 	private ListNode<T> head;
 	private ListNode<T> current;
 	private int numberOfElements;
-
+	private int index = 1;
+	private String recursive = "";
 	public LinkedList() {
 		this.head = null;
 	}
@@ -31,10 +32,11 @@ public class LinkedList<T> implements List<T> {
 
 	@Override
 	public int numberOfElements() {
-		current = head;
+		//current = head;
+		ListNode<T> countElemnts= head;
 		numberOfElements = 0;
-		while (current != null) {
-			current = current.next;
+		while (countElemnts != null) {
+			countElemnts = countElemnts.next;
 			numberOfElements++;
 		}
 		return numberOfElements;
@@ -145,6 +147,37 @@ public class LinkedList<T> implements List<T> {
 		}
 	}
 
+	@Override
+	public String toStringRecursive() {
+		int number = numberOfElements();
+		if (isEmpty()) {
+			return "[]";
+		} else {
+			current = head;
+			int r = 1;
+			while (r < index) {
+				current = current.next;
+				r++;
+			}
+			while (current.next != null) {
+				index++;
+				if (index == 2) 
+					recursive += "[" + current.data + toStringRecursive();
+				else if(index == numberOfElements()-1) {
+					recursive += current.next.data + " ]";
+				}
+				else 
+					recursive += current.data + ", " + toStringRecursive();
+			}
+		}
+		return recursive;
+	}
+
+	@Override
+	public String toStringReverseRecursive() {
+		return null;
+	}
+
 	@SuppressWarnings("hiding")
 	private class ListNode<T> {
 		T data;
@@ -156,4 +189,5 @@ public class LinkedList<T> implements List<T> {
 		}
 
 	}
+
 }
