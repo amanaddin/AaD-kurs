@@ -32,11 +32,10 @@ public class LinkedList<T> implements PrintableList<T> {
 
 	@Override
 	public int numberOfElements() {
-		//current = head;
-		ListNode<T> countElemnts= head;
+		current = head;
 		numberOfElements = 0;
-		while (countElemnts != null) {
-			countElemnts = countElemnts.next;
+		while (current != null) {
+			current = current.next;
 			numberOfElements++;
 		}
 		return numberOfElements;
@@ -149,7 +148,7 @@ public class LinkedList<T> implements PrintableList<T> {
 
 	@Override
 	public String toStringRecursive() {
-		int number = numberOfElements();
+		String b = "";
 		if (isEmpty()) {
 			return "[]";
 		} else {
@@ -162,15 +161,22 @@ public class LinkedList<T> implements PrintableList<T> {
 			while (current.next != null) {
 				index++;
 				if (index == 2) 
-					recursive += "[" + current.data + toStringRecursive();
-				else if(index == numberOfElements()-1) {
-					recursive += current.next.data + " ]";
-				}
+					recursive += "[" + current.data + ", "+ toStringRecursive();
 				else 
 					recursive += current.data + ", " + toStringRecursive();
 			}
+			recursive += current.data + "]";
+			for(int i =0; i < recursive.length(); i++) {
+				if (recursive.charAt(i) == ']') {
+					b += recursive.charAt(i);
+					break;
+				}
+				else
+					b += recursive.charAt(i);
+			}
+			
 		}
-		return recursive;
+		return b;
 	}
 
 	@Override
