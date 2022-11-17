@@ -149,7 +149,7 @@ public class LinkedList<T> implements PrintableList<T> {
 
 	@Override
 	public String toStringRecursive() {
-		String b = "";
+		String stringRepresentetionOfList = "";
 		if (isEmpty()) {
 			return "[]";
 		} else {
@@ -169,15 +169,15 @@ public class LinkedList<T> implements PrintableList<T> {
 			recursive += current.data + "]";
 			for(int i =0; i < recursive.length(); i++) {
 				if (recursive.charAt(i) == ']') {
-					b += recursive.charAt(i);
+					stringRepresentetionOfList += recursive.charAt(i);
 					break;
 				}
 				else
-					b += recursive.charAt(i);
+					stringRepresentetionOfList += recursive.charAt(i);
 			}
 			
 		}
-		return b;
+		return stringRepresentetionOfList;
 	}
 
 	@Override

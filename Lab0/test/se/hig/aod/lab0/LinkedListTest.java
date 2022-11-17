@@ -85,12 +85,39 @@ class LinkedListTest {
 		assertEquals(1, listUnderTest.getFirst() , "GetFirst() should return first element in list");
 	}
 	/**
-	 * Test method for {@link se.hig.aod.lab0.numberOfElements().
+	 * Test method for {@link se.hig.aod.lab0.LinkedList.numberOfElements().
 	 */
 	@Test
 	public void testNumberOfElements() {
 		initializeList();
 		assertEquals(fixture.length, listUnderTest.numberOfElements());
+	}
+	/**
+	 * Test method for {@link se.hig.aod.lab0.LinkedList.inserFirst().
+	 */
+	@Test
+	public void testInsertFirst() {
+		initializeList();
+		listUnderTest.insertFirst(100);
+		assertEquals(listUnderTest.getFirst(), 100);
+	}
+	/**
+	 * Test method for {@link se.hig.aod.lab0.LinkedList.insertLast().
+	 */
+	@Test
+	public void testInsertLast() {
+		initializeList();
+		listUnderTest.insertLast(100);
+		assertEquals(listUnderTest.getLast(), 100);
+	}
+	/**
+	 * Test method for {@link se.hig.aod.lab0.LinkedList.insertAtGivenIndex().
+	 */
+	@Test
+	public void testInsertAtGivenIndex() {
+		initializeList();
+		listUnderTest.inserAt(3, 100);
+		assertEquals(listUnderTest.getElementAtIndex(3), 100);
 	}
 
 	private void initializeList() {
