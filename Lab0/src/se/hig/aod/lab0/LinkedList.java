@@ -22,7 +22,7 @@ public class LinkedList<T> implements PrintableList<T> {
 		if (head != null) {
 			return head.data;
 		} else
-			throw new ListEmptyException("unable to remove first elemen. list is empty");
+			throw new ListEmptyException("unable to get first elemen. list is empty");
 	}
 
 	public void clear() {
@@ -99,7 +99,8 @@ public class LinkedList<T> implements PrintableList<T> {
 			}
 			return current.data;
 		}
-		return null;
+		else
+			throw new ListEmptyException("unable to get last elemen. list is empty");
 	}
 
 	public void inserAt(int position, T t) {
