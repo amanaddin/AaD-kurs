@@ -6,7 +6,9 @@ public class LinkedList<T> implements PrintableList<T> {
 	private ListNode<T> current;
 	private int numberOfElements;
 	private int index = 1;
+	private int inisializeRecursiveIndex = 0;
 	private String recursive = "";
+
 	public LinkedList() {
 		this.head = null;
 	}
@@ -98,8 +100,7 @@ public class LinkedList<T> implements PrintableList<T> {
 				current = current.next;
 			}
 			return current.data;
-		}
-		else
+		} else
 			throw new ListEmptyException("unable to get last elemen. list is empty");
 	}
 
@@ -139,50 +140,62 @@ public class LinkedList<T> implements PrintableList<T> {
 			throw new IndexOutOfBoundsException(index);
 	}
 
-	public void printNodes() {
-		current = head;
-		while (current.next != null) {
-			System.out.println(current.data);
-			current = current.next;
-		}
-	}
-
 	@Override
 	public String toStringRecursive() {
-		String stringRepresentetionOfList = "";
+		String str = "";
 		if (isEmpty()) {
 			return "[]";
-		} else {
-			current = head;
-			int r = 1;
-			while (r < index) {
-				current = current.next;
-				r++;
-			}
-			while (current.next != null) {
-				index++;
-				if (index == 2) 
-					recursive += "[" + current.data + ", "+ toStringRecursive();
-				else 
-					recursive += current.data + ", " + toStringRecursive();
-			}
-			recursive += current.data + "]";
-			for(int i =0; i < recursive.length(); i++) {
-				if (recursive.charAt(i) == ']') {
-					stringRepresentetionOfList += recursive.charAt(i);
-					break;
-				}
-				else
-					stringRepresentetionOfList += recursive.charAt(i);
-			}
-			
 		}
-		return stringRepresentetionOfList;
+		if (index > numberOfElements()) {
+			return recursive;
+		}
+		int currentPosition = 1;
+		current = head;
+		str = current.data + ", ";
+		while (currentPosition < index && current.next != null) {
+			current = current.next;
+			str = current.data + ", ";
+			currentPosition++;
+		}
+		if (index == 1)
+			recursive = "[" + str;
+		else if (index == numberOfElements())
+			recursive += getLast() + "]";
+		else
+			recursive += str;
+		index++;
+		return toStringRecursive();
 	}
 
 	@Override
 	public String toStringReverseRecursive() {
-		return null;
+		String str = "";
+		if (isEmpty()) {
+			return "[]";
+		}
+		if (inisializeRecursiveIndex == 0) {
+			index = numberOfElements();
+			inisializeRecursiveIndex++;
+		}
+		if (index == 0) {
+			return recursive;
+		}
+		int currentPosition = 1;
+		current = head;
+		str = current.data + "";
+		while (currentPosition < index && current.next != null) {
+			current = current.next;
+			str = current.data + ", ";
+			currentPosition++;
+		}
+		if (index == 1)
+			recursive += str + "]";
+		else if (index == numberOfElements())
+			recursive = "[" + getLast() + ", ";
+		else
+			recursive += str;
+		index--;
+		return toStringReverseRecursive();
 	}
 
 	@SuppressWarnings("hiding")
