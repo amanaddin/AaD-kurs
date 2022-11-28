@@ -151,14 +151,13 @@ public class LinkedList<T> implements PrintableList<T> {
 		}
 		int currentPosition = 1;
 		current = head;
-		str = current.data + ", ";
 		while (currentPosition < index && current.next != null) {
 			current = current.next;
 			str = current.data + ", ";
 			currentPosition++;
 		}
 		if (index == 1)
-			recursive = "[" + str;
+			recursive = "[" + getFirst()+ ", ";
 		else if (index == numberOfElements())
 			recursive += getLast() + "]";
 		else
@@ -182,14 +181,13 @@ public class LinkedList<T> implements PrintableList<T> {
 		}
 		int currentPosition = 1;
 		current = head;
-		str = current.data + "";
 		while (currentPosition < index && current.next != null) {
 			current = current.next;
 			str = current.data + ", ";
 			currentPosition++;
 		}
 		if (index == 1)
-			recursive += str + "]";
+			recursive += getFirst() + "]";
 		else if (index == numberOfElements())
 			recursive = "[" + getLast() + ", ";
 		else
