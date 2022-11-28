@@ -1,19 +1,8 @@
 package se.hig.aod.lab1;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-/**
- * xxxxxx
- * 
- * @author xxxx
- */
-class HeapPriorityQueueTest {
-
-	static final Integer[] INT_FIXTURE = {}; // TODO fill with random integers
+public class HeapPriorityQueueTest {
+	
+	static final Integer[] INT_FIXTURE = {21, 2, 3, 1, 99, 100}; // TODO fill with random integers
 
 	HeapPriorityQueue<Integer> nonEmptyQueue;
 	HeapPriorityQueue<Integer> emptyQueue;
@@ -45,19 +34,14 @@ class HeapPriorityQueueTest {
 		emptyQueue.clear();
 		assertTrue(emptyQueue.isEmpty(), "emptyQueue should be empty after clear");
 	}
-
-	// TODO ADD MORE TESTS
-	/*
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 *
-	 */
+	
+	@Test
+	void testEnque() {
+		
+	}
+	
+	@Test
+	void testDeque() {
+		
+	}
 }

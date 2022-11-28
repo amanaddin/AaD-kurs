@@ -6,6 +6,7 @@ public class HeapPriorityQueue<T extends Comparable<? super T>> implements Prior
 	private int size;
 	private int maxSize;
 
+	@SuppressWarnings("unchecked")
 	public HeapPriorityQueue(int maxSize) {
 		this.maxSize = maxSize;
 		clear();
@@ -39,36 +40,55 @@ public class HeapPriorityQueue<T extends Comparable<? super T>> implements Prior
 	}
 
 	private int parent(int currentIndex) {
-		// TODO
-		return 0;
+		return (currentIndex - 1) / 2;
 	}
 
 	private int leftChild(int currentIndex) {
-		// TODO
-		return 0;
+		return 2 * currentIndex + 1;
 	}
 
 	private int rightChild(int currentIndex) {
-		// TODO
-		return 0;
+		return 2 * currentIndex + 2;
 	}
 
 	private void reHeapUp(int currentIndex) {
-		// TODO Recursive implementation
+		T temp;
+		while(currentIndex > 0 && heap[currentIndex].compareTo(heap[parent(currentIndex)]) > 0) {
+			temp = heap[currentIndex];
+			heap[currentIndex] = heap[parent(currentIndex)];
+			heap[parent(currentIndex)] = temp;
+		}
+
 	}
 
 	private void reHeapDown(int currentIndex) {
-		// TODO Recursive implementation
+		
+		T element = heap[currentIndex];
+		int index;
+		while (currentIndex< size/2) {
+			
+			if (rightChild(currentIndex) < size && 
+					heap[leftChild(currentIndex)].compareTo(heap[rightChild(currentIndex)]) < 0)
+				index = rightChild(currentIndex);
+			else
+				index = leftChild(currentIndex);
+			if (element.compareTo(heap[index]) >= 0)
+				break;
+			heap[currentIndex] = heap[index];
+			currentIndex = index;				
+		}
+		heap[currentIndex] = element;
 	}
 
 	@Override
 	public void enqueue(T newElement) {
 		if (isFull()) {
 			throw new PriorityQueueFullException("Heap is full!");
+		} else {
+			heap[size] = newElement;
+			reHeapUp(size++);
+
 		}
-		size++;
-		// TODO Code that inserts the new element at the last position in the array
-		// TODO reHeapUp for new node
 	}
 
 	@Override
@@ -76,12 +96,9 @@ public class HeapPriorityQueue<T extends Comparable<? super T>> implements Prior
 		if (isEmpty()) {
 			throw new PriorityQueueEmptyException("Cannot dequeue empty Queue!");
 		} else {
-			T dequeuedElement = heap[0];// the root element of the heap
-
-			// TODO Code that moves the last element in the heap to the root of the heap
+			T dequeuedElement = heap[0];
 			size--;
-			// TODO reHeapDown for the new root of the heap
-
+			reHeapDown(0);
 			return dequeuedElement;
 		}
 	}
@@ -104,4 +121,3 @@ public class HeapPriorityQueue<T extends Comparable<? super T>> implements Prior
 		return stringRepresentation;
 	}
 }
-
