@@ -1,5 +1,12 @@
 package se.hig.aod.lab1;
 
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+
 public class HeapPriorityQueueTest {
 	
 	static final Integer[] INT_FIXTURE = {21, 2, 3, 1, 99, 100}; // TODO fill with random integers
@@ -36,12 +43,29 @@ public class HeapPriorityQueueTest {
 	}
 	
 	@Test
-	void testEnque() {
-		
+	void testEnqueInFullArray() {
+		Integer r = 12;
+		assertThrows(PriorityQueueFullException.class, () -> nonEmptyQueue.enqueue(r) , "Heap is full!");
 	}
 	
 	@Test
-	void testDeque() {
-		
+	void testDequeEmptyArray() {
+		assertThrows(PriorityQueueEmptyException.class, () -> emptyQueue.dequeue(), "");
 	}
+	
+	@Test
+	void testSize() {
+		assertEquals(6, nonEmptyQueue.size());
+	}
+	
+	@Test 
+	void testGetFront() {
+		assertEquals(100, nonEmptyQueue.getFront());
+	}
+	
+	@Test 
+	void testTosString() {
+		assertEquals("100 21 99 1 2 3 ", nonEmptyQueue.toString());
+	}
+
 }

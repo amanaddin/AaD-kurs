@@ -3,15 +3,21 @@ package se.hig.aod.lab1;
 public class Main {
 
 	public static void main(String[] args) {
-		
-		HeapPriorityQueue<Integer> h = new HeapPriorityQueue<>(5);
-		h.enqueue(10);
-		h.enqueue(20);
-		h.enqueue(7);
-		h.enqueue(5);
-		h.enqueue(3);
-		
-		System.out.println(h.toString());
-	}
+		Integer[] INT_FIXTURE = {21, 2, 3, 1, 99, 100};
+		HeapPriorityQueue<Integer> h = new HeapPriorityQueue<>(6);
 
+		/*
+		 * for (int testData : INT_FIXTURE) { h.enqueue(testData); }
+		 */
+		
+		h.enqueue(12);
+		h.enqueue(11);
+		h.enqueue(1);
+		h.enqueue(20);
+		h.enqueue(3);
+		h.enqueue(200);
+		System.out.println(h.toString());
+		System.out.println(h.getFront());
+	}
+	
 }

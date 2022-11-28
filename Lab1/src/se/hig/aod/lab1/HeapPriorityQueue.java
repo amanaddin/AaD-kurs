@@ -52,12 +52,14 @@ public class HeapPriorityQueue<T extends Comparable<? super T>> implements Prior
 	}
 
 	private void reHeapUp(int currentIndex) {
-		T temp;
+		T temp = heap[currentIndex];
 		while(currentIndex > 0 && heap[currentIndex].compareTo(heap[parent(currentIndex)]) > 0) {
-			temp = heap[currentIndex];
-			heap[currentIndex] = heap[parent(currentIndex)];
-			heap[parent(currentIndex)] = temp;
-		}
+ 			temp = heap[currentIndex];
+ 			heap[currentIndex] = heap[parent(currentIndex)];
+ 			heap[parent(currentIndex)] = temp;
+ 			currentIndex = parent(currentIndex);
+ 		}	
+		heap[currentIndex] = temp;
 
 	}
 
