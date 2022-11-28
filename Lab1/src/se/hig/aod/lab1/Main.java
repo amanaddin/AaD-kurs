@@ -17,7 +17,8 @@ public class Main {
 		h.enqueue(3);
 		h.enqueue(200);
 		System.out.println(h.toString());
-		System.out.println(h.getFront());
+		System.out.println(h.dequeue());
+		System.out.println(h.dequeue());
 	}
 	
 }

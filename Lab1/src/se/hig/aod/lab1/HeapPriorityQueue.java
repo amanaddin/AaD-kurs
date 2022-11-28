@@ -99,6 +99,7 @@ public class HeapPriorityQueue<T extends Comparable<? super T>> implements Prior
 			throw new PriorityQueueEmptyException("Cannot dequeue empty Queue!");
 		} else {
 			T dequeuedElement = heap[0];
+			heap[0] = heap[size-1];
 			size--;
 			reHeapDown(0);
 			return dequeuedElement;
