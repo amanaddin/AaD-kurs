@@ -15,7 +15,7 @@ public class HeapPriorityQueue<T extends Comparable<? super T>> implements Prior
 	@SuppressWarnings("unchecked")
 	@Override
 	public void clear() {
-		heap = (T[]) (new Comparable[maxSize]); // Create empty array of size maxSize
+		heap = (T[]) (new Comparable[maxSize]);
 		size = 0;
 	}
 
@@ -53,31 +53,31 @@ public class HeapPriorityQueue<T extends Comparable<? super T>> implements Prior
 
 	private void reHeapUp(int currentIndex) {
 		T temp = heap[currentIndex];
-		while(currentIndex > 0 && heap[currentIndex].compareTo(heap[parent(currentIndex)]) > 0) {
- 			temp = heap[currentIndex];
- 			heap[currentIndex] = heap[parent(currentIndex)];
- 			heap[parent(currentIndex)] = temp;
- 			currentIndex = parent(currentIndex);
- 		}	
+		while (currentIndex > 0 && heap[currentIndex].compareTo(heap[parent(currentIndex)]) > 0) {
+			temp = heap[currentIndex];
+			heap[currentIndex] = heap[parent(currentIndex)];
+			heap[parent(currentIndex)] = temp;
+			currentIndex = parent(currentIndex);
+		}
 		heap[currentIndex] = temp;
 
 	}
 
 	private void reHeapDown(int currentIndex) {
-		
+
 		T element = heap[currentIndex];
 		int index;
-		while (currentIndex< size/2) {
-			
-			if (rightChild(currentIndex) < size && 
-					heap[leftChild(currentIndex)].compareTo(heap[rightChild(currentIndex)]) < 0)
+		while (currentIndex < size / 2) {
+
+			if (rightChild(currentIndex) < size
+					&& heap[leftChild(currentIndex)].compareTo(heap[rightChild(currentIndex)]) < 0)
 				index = rightChild(currentIndex);
 			else
 				index = leftChild(currentIndex);
 			if (element.compareTo(heap[index]) >= 0)
 				break;
 			heap[currentIndex] = heap[index];
-			currentIndex = index;				
+			currentIndex = index;
 		}
 		heap[currentIndex] = element;
 	}
@@ -99,7 +99,7 @@ public class HeapPriorityQueue<T extends Comparable<? super T>> implements Prior
 			throw new PriorityQueueEmptyException("Cannot dequeue empty Queue!");
 		} else {
 			T dequeuedElement = heap[0];
-			heap[0] = heap[size-1];
+			heap[0] = heap[size - 1];
 			size--;
 			reHeapDown(0);
 			return dequeuedElement;
