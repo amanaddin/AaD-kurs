@@ -6,10 +6,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-
 public class HeapPriorityQueueTest {
-	
-	static final Integer[] INT_FIXTURE = {21, 2, 3, 1, 99, 100}; // TODO fill with random integers
+
+	static final Integer[] INT_FIXTURE = { 21, 2, 3, 1, 99, 100 }; 
 
 	HeapPriorityQueue<Integer> nonEmptyQueue;
 	HeapPriorityQueue<Integer> emptyQueue;
@@ -41,31 +40,38 @@ public class HeapPriorityQueueTest {
 		emptyQueue.clear();
 		assertTrue(emptyQueue.isEmpty(), "emptyQueue should be empty after clear");
 	}
-	
+
 	@Test
 	void testEnqueInFullArray() {
 		Integer r = 12;
-		assertThrows(PriorityQueueFullException.class, () -> nonEmptyQueue.enqueue(r) , "Heap is full!");
+		assertThrows(PriorityQueueFullException.class, () -> nonEmptyQueue.enqueue(r), "Heap is full!");
 	}
-	
+
 	@Test
 	void testDequeEmptyArray() {
 		assertThrows(PriorityQueueEmptyException.class, () -> emptyQueue.dequeue(), "");
 	}
-	
+
 	@Test
 	void testSize() {
 		assertEquals(6, nonEmptyQueue.size());
 	}
-	
-	@Test 
+
+	@Test
 	void testGetFront() {
 		assertEquals(100, nonEmptyQueue.getFront());
 	}
-	
-	@Test 
+
+	@Test
 	void testTosString() {
 		assertEquals("100 21 99 1 2 3 ", nonEmptyQueue.toString());
+	}
+
+	@Test
+	void testDeque() {
+		nonEmptyQueue.dequeue();
+		nonEmptyQueue.dequeue();
+		assertEquals(21, nonEmptyQueue.dequeue());
 	}
 
 }
