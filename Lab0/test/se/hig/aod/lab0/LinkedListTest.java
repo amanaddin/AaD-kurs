@@ -119,6 +119,32 @@ class LinkedListTest {
 		listUnderTest.inserAt(3, 100);
 		assertEquals(listUnderTest.getElementAtIndex(3), 100);
 	}
+	
+	@Test
+	void testRemoveFirst() {
+		initializeList();
+		listUnderTest.removeFirst();
+		assertEquals("[2, 3, 4, 5]", listUnderTest.toStringRecursive());
+	}
+	
+	@Test
+	void testRemoveLast() {
+		initializeList();
+		listUnderTest.removeLast();
+		assertEquals("[1, 2, 3, 4]", listUnderTest.toStringRecursive());
+	}
+	
+	@Test
+	void testToStringRecursive() {
+		initializeList();
+		assertEquals("[1, 2, 3, 4, 5]", listUnderTest.toStringRecursive());
+	}
+	
+	@Test
+	void testToStringReversed() {
+		initializeList();
+		assertEquals("[5, 4, 3, 2, 1]", listUnderTest.toStringReverseRecursive());
+	}
 
 	private void initializeList() {
 		for (int i = 0; i < fixture.length; i++) {
