@@ -2,6 +2,7 @@ package algorithms;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class MergeSort<T extends Comparable<? super T>> implements Sorter<T> {
 
@@ -20,27 +21,41 @@ public class MergeSort<T extends Comparable<? super T>> implements Sorter<T> {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	private void merge(List<T> leftList, List<T> rightList, List<T> list) {
+		T[] array = (T[]) new Comparable[list.size()];
+		T[] leftArray = (T[]) new Comparable[leftList.size()];
+		T[] rightArray = (T[]) new Comparable[rightList.size()];
+		leftArray = leftList.toArray(leftArray);
+		rightArray = rightList.toArray(rightArray);
+		array = list.toArray(array);
 		int leftIndex = 0;
 		int rightIndex = 0;
 		int index = 0;
-		while (leftIndex < leftList.size() && rightIndex < rightList.size()) {
-			if (leftList.get(leftIndex).compareTo(rightList.get(rightIndex)) < 0) {
-				list.set(index++, leftList.get(leftIndex++));
+
+		while (leftIndex < leftArray.length && rightIndex < rightArray.length) {
+			if (leftArray[leftIndex].compareTo(rightArray[rightIndex]) < 0) {
+				array[index++] = leftArray[leftIndex++];
 			} else {
-				list.set(index++, rightList.get(rightIndex++));
+				array[index++] = rightArray[rightIndex++];
 			}
 		}
-		while (leftIndex < leftList.size()) {
-			list.set(index++, leftList.get(leftIndex++));
+		while (leftIndex < leftArray.length) {
+			array[index++] = leftArray[leftIndex++];
 		}
-		while (rightIndex < rightList.size()) {
-			list.set(index++, rightList.get(rightIndex++));
+		while (rightIndex < rightArray.length) {
+			array[index++] = rightArray[rightIndex++];
+		}
+		list.clear();
+		for (T arr : array) {
+			list.add(arr);
 		}
 
 	}
+
 	@Override
 	public String toString() {
 		return "MergeSort";
 	}
+
 }

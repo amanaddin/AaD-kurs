@@ -8,23 +8,31 @@ import java.util.Random;
 
 public class InsertionSort <T extends Comparable<? super T>> implements Sorter<T>{
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void sort(List<T> list) {
-		insertionSortWorker(list, 0, list.size());
+		T [] array  = (T[]) new Comparable[list.size()];
+		array = list.toArray(array);
+		insertionSortWorker(array, 0, list.size());
+		 list.clear();
+			for(T arr: array) {
+				list.add(arr);
+			}
 	}
-	private void insertionSortWorker (List<T> data, int low, int high) { 
+	private void insertionSortWorker (T []data, int low, int high) { 
+		
 	    for (int i = low + 1; i < high; i++) { 
 	        for (int k = i; k >= low + 1; k--) { 
-				  if (data.get(k).compareTo(data.get(k-1)) < 0) 
+				  if (data[k].compareTo(data[k-1]) < 0) 
 					  swap (data, k, k -1);  
 	        } 
-	    }  
+	    }
 	} 
 	
-	public void swap(List<T> data, int first, int second) {
-		T temp = data.get(first);
-		data.set(first, data.get(second));
-		data.set(second, temp);
+	public void swap(T []data, int first, int second) {
+		T temp = data[first];
+		data[first] = data[second];
+		data[second] = temp;
 		
 	}
 	@Override
